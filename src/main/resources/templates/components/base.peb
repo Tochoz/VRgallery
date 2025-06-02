@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>{% block title %}VR gallery{% endblock %}</title>
+    <link rel="stylesheet" href="/files/static/css/core.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Библиотека VR игр центра графических технологий ИТМО.">
+    <link rel="icon" type="image/svg+xml" href="/static/icons/favicon.svg">
+    <link rel="icon" type="image/png" href="/static/icons/favicon.png">
+    <script src="/files/static/index.js" defer></script>
+</head>
+<body>
+    {% include 'components/header' %}
+<main id="content">
+        {% block content %}Test block{% endblock %}
+</main>
+    {% include 'components/footer' %}
+</body>
+</html>

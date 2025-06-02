@@ -1,0 +1,22 @@
+footer {
+    height: 60px;
+    background-color: var(--black-color);
+    align-items: center;
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    border-top: var(--dark-color) solid 1px;
+    .content{
+        display: flex;
+        justify-content: space-between;
+        max-width: 1000px;
+        width: 80%;
+        margin: 0 auto;
+        align-items: center;
+    }
+    h3{
+        margin: 0 auto;
+        font-size: 16px;
+        font-weight: 400;
+    }
+}

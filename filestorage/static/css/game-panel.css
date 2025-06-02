@@ -1,0 +1,54 @@
+section.game-panel{
+    width: 100%;
+    margin-bottom: 80px;
+    display: flex;
+    gap: 20px;
+
+    a.download{
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        box-sizing: border-box;
+        height: 40px;
+        padding: 8px 4% 10px 4%;
+
+        text-decoration: none;
+        font-weight: inherit;
+
+        border-radius: 20px;
+
+        background: radial-gradient(circle at 0 -55px, rgba(248, 77, 0, 1) 0%, rgba(25, 25, 25, 1) 110%);
+        transition: all .2s;
+        img{
+            display: block;
+        }
+    }
+    a.download:hover, button:hover{
+        filter: brightness(.8);
+    }
+
+    a.sideQuest{
+        background: inherit;
+        border: solid 2px rgba(248, 77, 0, 0.6);
+
+    }
+
+    button{
+        display: block;
+        box-sizing: border-box;
+        height: 40px;
+        padding: 0 3%;
+        border: solid 2px rgba(238, 150, 239, 0.8);
+
+        border-radius: 20px;
+
+        line-height: inherit;
+        font: inherit;
+        color: #EE96EF;
+
+        background-color: transparent;
+        cursor: pointer;
+        transition: all .2s;
+    }
+
+}

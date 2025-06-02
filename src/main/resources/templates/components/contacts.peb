@@ -1,0 +1,45 @@
+<link rel="stylesheet" href="/files/static/css/contacts.css">
+{% block custom_styles %}{% endblock %}
+<section class="contacts" id="contacts">
+    <h2>
+        {% block header %}
+            {% if lang == "en" %} Contacts {% else %} Контакты {% endif %}
+        {% endblock %}
+    </h2>
+    <div class="content">
+        <div class="info">
+            <ul>
+                <li>
+                    <span>VK</span>
+                    <a href="vk.com/mixeduxed">vk.com/mixeduxed</a>
+                </li>
+                <li>
+                    <span>Telegram</span>
+                    <a href="t.me/mixeduxed">t.me/mixeduxed</a>
+                </li>
+                <li>
+                    <span>YouTube</span>
+                    <a href="youtube.com/@mixeduxed">mixeduxed</a>
+                </li>
+                <li class="blank"></li>
+
+                <li>
+                    <span>Email</span>
+                    <a href="mailto:uxr@itmo.ru">uxr@itmo.ru</a>
+                </li>
+                <li>
+                    <span>Телефон</span>
+                    <a href="tel:+79215794007">+7(921)579-40-07</a>
+                </li>
+            </ul>
+        </div>
+        <div class="map">
+            <div class="yamap" style="position:relative;overflow:hidden; height: 100%; width: 100%">
+                <a href="https://yandex.ru/maps/2/saint-petersburg/?utm_medium=mapframe&amp;utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Санкт‑Петербург</a>
+                <a href="https://yandex.ru/maps/2/saint-petersburg/house/ulitsa_gastello_12/Z0kYdQVkSUIOQFtjfXR0eHphbA==/?ll=30.324117%2C59.859596&amp;utm_campaign=desktop&amp;utm_medium=mapframe&amp;utm_source=maps&amp;z=16" style="color:#eee;font-size:12px;position:absolute;top:14px;">Улица Гастелло, 12</a>
+                <iframe class="yamap_frame" src="https://yandex.ru/map-widget/v1/?lang='+lang+'&ll=30.324117%2C59.859596&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg1NzM5ODk4NxJM0KDQvtGB0YHQuNGPLCDQodCw0L3QutGCLdCf0LXRgtC10YDQsdGD0YDQsywg0YPQu9C40YbQsCDQk9Cw0YHRgtC10LvQu9C-LCAxMiIKDbaX8kEVQnBvQg%2C%2C&utm_campaign=desktop&utm_medium=search&utm_source=maps&z=13" width="100%" height="100%" frameborder="1" allowfullscreen="true" style="position:relative;">
+                </iframe>
+            </div>
+        </div>
+    </div>
+</section>

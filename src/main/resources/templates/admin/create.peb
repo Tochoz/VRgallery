@@ -1,0 +1,75 @@
+{% extends "components/base" %}
+
+{% block content %}
+    {% embed "components/title" %}
+    {% block pageheader %}
+        Опубликовать игру
+    {% endblock %}
+    {% endembed %}
+<link rel="stylesheet" href="/files/static/css/form.css">
+<script src="/files/static/form.js" defer></script>
+<form method='POST' action='/manage/create' enctype='multipart/form-data'>
+    <div class="field">
+        <label for="title">Заголовок:</label>
+        <input type="text" id="title" name="title" required>
+    </div>
+    <div class="field">
+        <label for="titleEng">Заголовок (Английский):</label>
+        <input type="text" id="titleEng" name="titleEng">
+    </div>
+    <div class="field">
+        <label for="description">Описание:</label>
+        <textarea id="description" name="description" required></textarea>
+    </div>
+    <div class="field">
+        <label for="descriptionEng">Описание (Английский):</label>
+        <textarea id="descriptionEng" name="descriptionEng"></textarea>
+    </div>
+    <div class="field fileField">
+        <label for="file">Файл .apk:</label>
+        <div class="input-file-row">
+            <label class="input-file">
+                <input type="file" name="apkFile">
+                <span>Выберите файл</span>
+            </label>
+            <div class="input-file-list"></div>
+        </div>
+        <label for="fileLink">или ссылка на файл</label>
+        <input type="text" id="fileLink" name="fileLink">
+    </div>
+{#    <div class="field">#}
+{#        <label for="isThirdParty">Is Third Party Link:</label>#}
+{#        <input type="checkbox" id="isThirdParty" name="isThirdParty">#}
+{#    </div>#}
+    <div class="field">
+        <label for="sideQuestLink">Ссылка на Side Quest (необязательно):</label>
+        <input type="text" id="sideQuestLink" name="sideQuestLink">
+    </div>
+    <div class="field fileField">
+        <label for="file">Обложка</label>
+        <div class="input-file-row">
+            <label class="input-file">
+                <input type="file" name="preview">
+                <span>Выберите изображение</span>
+            </label>
+            <div class="input-file-list"></div>
+        </div>
+        <label for="previewLink">или ссылка на файл</label>
+        <input type="text" id="previewLink" name="previewLink">
+    </div>
+    <div class="field fileField">
+        <label for="file">Скриншоты (несколько файлов)</label>
+        <div class="input-file-row">
+            <label class="input-file">
+                <input type="file" name="medias" multiple>
+                <span>Выберите изображение</span>
+            </label>
+            <div class="input-file-list"></div>
+        </div>
+        <label for="mediasLink">или ссылки на файлы через ";"</label>
+        <input type="text" id="mediasLink" name="mediasLink">
+    </div>
+    <button type="submit">Создать игру</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+<link rel="stylesheet" href="/files/static/css/carousel.css">
+<script src="/files/static/carousel.js" defer></script>
+
+{% block custom_styles %}{% endblock %}
+<section class="carousel">
+    <div class="upper">
+        <h2>{% block header %}
+                {% if lang == "en" %} Gallery {% else %} Галерея {% endif %}
+            {% endblock %}
+        </h2>
+        <div class="controls">
+            <a class="prev" onclick="plusSlides(-1)"><img src="/files/static/icons/arrow_left.svg" alt="Предыдущая картинка"></a>
+            <a class="next" onclick="plusSlides(1)"><img src="/files/static/icons/arrow_right.svg" alt="Предыдущая картинка"></a>
+        </div>
+    </div>
+    <div class="slideshow-container">
+        <div class="shadow"></div>
+
+        <div class="container">
+            {% for media in game.medias %}
+                <div class="slide">
+                    <img src="{{ media.file }}">
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+    <!-- The dots/circles -->
+    <div style="text-align:center">
+        {% for media in game.medias %}
+            <span class="dot" onclick="currentSlide({{ loop.index }})"></span>
+        {% endfor %}
+    </div>
+</section>

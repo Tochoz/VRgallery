@@ -1,0 +1,3 @@
+<link rel="stylesheet" href="/files/static/css/title.css">
+{% block custom_styles %}{% endblock %}
+<h1>{% block pageheader %} Заголовок страницы {% endblock %}</h1>

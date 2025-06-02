@@ -1,0 +1,7 @@
+<link rel="stylesheet" href="/files/static/css/title-game.css">
+{% block custom_styles %}{% endblock %}
+<section class="title-game">
+    <img src="{{ game.preview }}"/>
+    <h1>{% block pageheader %} {{ game.title }} {% endblock %}</h1>
+    {% if isAdmin == true %}<a href="/manage/games/{{ game.id }}">Edit</a>{% endif %}
+</section>

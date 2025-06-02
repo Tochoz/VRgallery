@@ -1,0 +1,49 @@
+<link rel="stylesheet" href="/files/static/css/header.css">
+<script src="/files/static/header.js" defer></script>
+{% block custom_styles %}{% endblock %}
+<header>
+    <div class="content">
+    <a href="/" {% if location == "main" %} class="disabled" {% endif %}><img class="logo" src="/files/static/icons/logo_itmo.svg" alt="Вернуться на главную"></a>
+    <nav>
+        <a href="/{% if lang == "en" %}?lang=en{% endif %}" {% if location == "main" %} class="disabled" {% endif %}>
+            {% if lang == "en" %} Main page {% else %} Главная {% endif %}
+        </a>
+        <a href="/games{% if lang == "en" %}?lang=en{% endif %}" {% if location == "library" %} class="disabled" {% endif %}>
+            {% if lang == "en" %} All games {% else %} Все игры {% endif %}
+        </a>
+        <a href="/{% if lang == "en" %}?lang=en{% endif %}#contacts" {% if location == "contacts" %} class="disabled" {% endif %}>
+            {% if lang == "en" %} Contacts {% else %} Контакты {% endif %}
+        </a>
+        {% if isAdmin == true %}
+            <a href="/manage/create" style="color: #ff8042; text-decoration: none; font-weight: 300">Создать</a>
+            <a href="/logout" style="color: #ff8042; text-decoration: none; font-weight: 300">Выйти</a>
+        {% endif %}
+{#        <details>#}
+{#            <summary>#}
+{#                <img src="/static/icons/burger.svg" alt="Меню">#}
+{#            </summary>#}
+{#            <div class="content">#}
+{#                <ul class="undecorated">#}
+{#                        <li>#}
+{#                            <button class="outlined" onclick="location.href='/profile'" {% if location == "profile" %} disabled {% endif %} type="button">Личный кабинет</button>#}
+{#                        </li>#}
+
+{#                        <li>#}
+{#                            <button class="outlined" onclick="location.href='/accounts/login'" type="button" {% if location == "login" %} disabled {% endif %}>Вход</button>#}
+{#                        </li>#}
+
+{#                </ul>#}
+{#            </div>#}
+{#        </details>#}
+    </nav>
+    <div class="switch {% if lang == "en" %} opposite {% endif %}">
+        <div class="ru">
+        <a href="?lang=ru">RU</a>
+        </div>
+        <div class="en">
+            <a href="?lang=en">EN</a>
+        </div>
+    </div>
+    </div>
+
+</header>

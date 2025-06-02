@@ -1,0 +1,13 @@
+<link rel="stylesheet" href="/files/static/css/four.css">
+{% block custom_styles %}{% endblock %}
+<section class="four">
+    <h2>{% block header %}
+        {% if lang == "en" %} Our best games {% else %} Наши лучшие игры {% endif %}
+        {% endblock %}</h2>
+    <div class="list">
+        {% for game in topGames %}
+            {% embed "components/card" %}
+            {% endembed %}
+        {% endfor %}
+    </div>
+</section>

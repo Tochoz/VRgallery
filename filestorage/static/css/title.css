@@ -1,0 +1,9 @@
+h1{
+    margin-bottom: 1em;
+    margin-top: 1.5em;
+    display: block;
+    width: 75%;
+}
+@media (max-width: 500px){
+    margin-bottom: 2em;
+}

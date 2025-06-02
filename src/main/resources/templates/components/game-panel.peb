@@ -1,0 +1,17 @@
+<link rel="stylesheet" href="/files/static/css/game-panel.css">
+<script src="/files/static/game-panel.js" defer></script>
+{% block custom_styles %}{% endblock %}
+<section class="game-panel">
+    <a class="download"  href="{{ game.file }}" download><img src="/files/static/icons/download.svg">
+        {% if lang == "en" %} Download .apk file {% else %} Скачать .apk файл {% endif %}
+    </a>
+
+    {% if game.sideQuestLink != null %}
+        <a class="download sideQuest" href="{{ game.sideQuestLink }}" target="_blank">
+            {% if lang == "en" %} SideQuest page {% else %} Страница SideQuest {% endif %}
+        </a>
+    {% endif %}
+    <button onclick="showDialog()">
+        {% if lang == "en" %} How to play? {% else %} Как сыграть? {% endif %}
+    </button>
+</section>

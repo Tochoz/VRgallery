@@ -1,0 +1,57 @@
+section.contacts{
+    width: 100%;
+    margin-bottom: 80px;
+    display: flex;
+    flex-direction: column;
+
+    h2{
+        width: 75%;
+    }
+    .content{
+        display: flex;
+        align-items: stretch;
+        width: 100%;
+        gap: 16px;
+        .info{
+            flex: 1;
+            ul{
+                padding: 0;
+                margin: 0;
+                li{
+
+                    display: flex;
+                    list-style: none;
+                    height: 1.4em;
+                    margin-bottom: .6em;
+                    width: 100%;
+                    box-sizing: border-box;
+
+                    padding: 0 0 0 16px;
+                    background-image: url("/files/static/icons/mark.svg");
+                    background-repeat: no-repeat;
+                    background-size: auto 100%;
+
+                    a{
+                        font-weight: 400;
+                        display: block;
+                        opacity: .7;
+                    }
+                    span{
+                        font-weight: 600;
+                        display: block;
+                        margin-right: auto;
+                    }
+                }
+                li.blank{
+                    background-image: none;
+                }
+            }
+        }
+        .map{
+            width: 60%;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+    }
+
+}

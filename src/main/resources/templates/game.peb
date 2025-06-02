@@ -1,0 +1,19 @@
+{% extends "components/base" %}
+{% block title %}{{ game.title }}{% endblock %}
+{% block content %}
+    {% embed "components/title-game" %}
+    {% endembed %}
+    {% embed "components/carousel" %}
+    {% endembed %}
+    {% embed "components/game-panel" %}
+    {% endembed %}
+    {% embed "components/header-text" %}
+    {% block header %}
+        {% if lang == "en" %} Description {% else %} Описание {% endif %}
+    {% endblock %}
+    {% block text %}
+        <p>{{ game.description }}</p>
+    {% endblock %}
+
+    {% endembed %}
+{% endblock %}

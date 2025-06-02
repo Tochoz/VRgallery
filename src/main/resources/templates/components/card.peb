@@ -1,0 +1,6 @@
+<card onclick='openGame({{ game.id }})' tabindex="-1" id="game-{{ game.id }}" {% if game.liked %}liked{% endif %}>
+    <img src="{{ game.preview }}"/>
+    <h3>{{ game.title }}</h3>
+    <span class="likesPanel" onclick="noneClick(event)"><img src="/files/static/icons/like{% if game.liked %}_filled{% endif %}.svg" onclick="like({{ game.id }}, event)" alt="like"><div class="likesCount">{{ game.likes }}</div></span>
+    <div class="back"></div>
+</card>

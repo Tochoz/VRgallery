@@ -1,0 +1,8 @@
+section.header-text{
+    width: 100%;
+    margin-bottom: 80px;
+}
+
+section.header-text>p{
+    width: 83%;
+}

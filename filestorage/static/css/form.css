@@ -1,0 +1,195 @@
+form{
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto 50px 0;
+    .field{
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 24px;
+
+        .content{
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 75%;
+        }
+        img{
+            width: 20%;
+        }
+        input[type="text"]{
+            border: 2px solid rgba(248, 77, 0, 0.4);
+            border-radius: 20px;
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            -khtml-border-radius: 20px;
+            background: var(--dark-color) !important;
+            outline: none;
+            /*height: 32px;*/
+            width: 100%;
+            color: inherit;
+            box-sizing: border-box;
+            font-size: 18px;
+            padding: .2em 1em .4em;
+        }
+        input[type="text"]:focus, textarea:focus{
+            border: 2px solid rgba(248, 77, 0, 0.7);
+        }
+        textarea{
+            border: 2px solid rgba(248, 77, 0, 0.4);
+            border-radius: 20px;
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            -khtml-border-radius: 20px;
+            background: var(--dark-color) !important;
+            outline: none;
+            height: 5em;
+            width: 100%;
+            color: inherit;
+            font-size: 18px;
+            box-sizing: border-box;
+            padding: .2em 1em .4em;
+            font-family: inherit;
+            resize: vertical;
+        }
+
+        input[type=file]{
+            font-family: inherit;
+            font-size: inherit;
+            color: inherit;
+        }
+    }
+    .imageField{
+        flex-direction: row;
+        gap: unset;
+        justify-content: space-between;
+    }
+    .fileField{
+        margin: 24px 0;
+        box-sizing: border-box;
+        background-color: var(--dark-color);
+        padding: 2em 2em 1.5em;
+        border-radius: 20px;
+    }
+
+    button,input[type=submit]{
+        margin: 0 auto;
+        display: block;
+        align-items: center;
+        box-sizing: border-box;
+        height: 40px;
+        padding: 8px 10% 10px 10%;
+
+        border: none;
+        color: var(--white-color);
+        font-size: inherit;
+
+        text-decoration: none;
+        font-weight: inherit;
+
+        border-radius: 20px;
+        cursor: pointer;
+
+        transition: all 0.2s;
+        background: radial-gradient(circle at 0 -55px, rgba(248, 77, 0, 1) 0%, rgba(25, 25, 25, 1) 110%);
+    }
+    button:hover,input[type=submit]:hover,button:focus,input[type=submit]:focus{
+        filter: brightness(.9);
+
+    }
+}
+
+.input-file-row {
+    display: inline-block;
+}
+.input-file {
+    position: relative;
+    display: inline-block;
+}
+.input-file span {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+    font-size: 14px;
+    vertical-align: middle;
+    color: rgb(255 255 255);
+    text-align: center;
+    background: radial-gradient(circle at 0 -55px, rgba(248, 77, 0, 1) 0%, rgb(39, 39, 39) 110%);
+    line-height: 22px;
+    height: 40px;
+    width: fit-content;
+    padding: 8px 50px 10px 50px;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 20px;
+    margin: 0;
+    transition: all 0.2s;
+}
+.input-file input[type=file] {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    display: block;
+    width: 0;
+    height: 0;
+}
+
+/* Focus */
+.input-file input[type=file]:focus + span {
+    filter: brightness(.9);
+}
+
+/* Hover/Active */
+.input-file:hover span {
+    filter: brightness(.7);
+}
+.input-file:active span {
+    background: radial-gradient(circle at 0 -55px, rgba(248, 77, 0, 1) 0%, rgb(39, 39, 39) 110%);
+}
+
+/* Disabled */
+.input-file input[type=file]:disabled + span {
+    background-color: #eee;
+}
+
+/* Список файлов */
+.input-file-list {
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+.input-file-list-item {
+    margin-bottom: 8px;
+    font-size: .6em;
+    display: flex;
+    gap: 16px;
+
+
+        .input-file-list-actions{
+            font-size: 2em;
+            margin-left: 1em;
+            display: inline-flex;
+            gap: 8px;
+        }
+
+
+    .input-file-list-preview{
+        width: fit-content;
+        min-width: 50px;
+        max-width: 200px;
+        img{
+            width: 200px;
+            display: block;
+            aspect-ratio: 16/9;
+            height: auto;
+            object-fit: cover;
+        }
+    }
+}
+.input-file-list-remove {
+    color: red;
+    text-decoration: none;
+    display: inline-block;
+    margin-left: 5px;
+}

@@ -1,0 +1,17 @@
+section.title-desc {
+    width: 100%;
+    margin-top: 100px;
+    margin-bottom: 80px;
+
+    h1{
+        display: block;
+        width: 100%;
+        font-size: 36px;
+    }
+    p {
+        width: 83%;
+    }
+}
+@media (max-width: 500px){
+    margin-bottom: 2em;
+}

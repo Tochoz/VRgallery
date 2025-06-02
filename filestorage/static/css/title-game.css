@@ -1,0 +1,25 @@
+section.title-game{
+    display: flex;
+    height: fit-content;
+    gap: 40px;
+    align-items: end;
+
+    margin-top: 80px;
+    margin-bottom: 40px;
+    img{
+        display: block;
+        aspect-ratio: 1;
+        width: 160px;
+        object-fit: cover;
+
+        border-radius: 20px;
+    }
+    h1{
+        margin-bottom: 0;
+        display: block;
+        width: 80%;
+    }
+}
+@media (max-width: 500px){
+    margin-bottom: 2em;
+}

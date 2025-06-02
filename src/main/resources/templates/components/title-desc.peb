@@ -1,0 +1,10 @@
+<link rel="stylesheet" href="/files/static/css/title-desc.css">
+{% block custom_styles %}{% endblock %}
+<section class="title-desc">
+    <h1>{% block pageheader %} Заголовок страницы {% endblock %}</h1>
+    <p>
+        {% block text %}
+        Пояснение к заголовку
+        {% endblock %}
+    </p>
+</section>

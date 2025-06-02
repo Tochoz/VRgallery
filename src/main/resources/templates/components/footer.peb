@@ -1,0 +1,8 @@
+<link rel="stylesheet" href="/files/static/css/footer.css">
+{% block custom_styles %}{% endblock %}
+
+<footer>
+    <div class="content">
+        <h3>mixeduxed • 2025</h3>
+    </div>
+</footer>

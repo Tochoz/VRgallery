@@ -1,0 +1,223 @@
+:root{
+    --black-color: #191919;
+    --dark-color: #272727;
+    --light-color: #EE96EF;
+
+    --white-color: #FDF9FB;
+    --accent-color: #F84D00;
+    --accent-color-hover: #c5895c;
+}
+
+@font-face {
+    font-family: MainFont;
+    src: url(../GolosText-VariableFont_wght.ttf);
+}
+
+body{
+    background-color: var(--black-color);
+    color: var(--white-color);
+
+    font-family: MainFont, sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+
+    --sb-track-color: #2d3250;
+    --sb-thumb-color: rgba(255, 236, 217, 0.2);
+    --sb-thumb-color-hover: rgba(255, 236, 217, 1);
+    --sb-size: 8px;
+}
+
+main{
+    max-width: 1000px;
+    margin: 0 auto;
+    width: 80%;
+    /*border: solid black 1px;*/
+
+    display: block;
+    flex: 1 0 auto;
+
+}
+
+a {
+    color: var(--white-color);
+    font-weight: 500;
+
+}
+a.disabled{
+    pointer-events: none;
+    text-decoration: none
+}
+h1{
+    font-size: 48px;
+    font-weight: 600;
+    margin-bottom: 32px;
+}
+h2{
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 24px;
+}
+h3{
+    font-size: 22px;
+    font-weight: 500;
+}
+p{
+    line-height: 1.7;
+}
+
+/*--------------------------------------card---------------------------------------*/
+card{
+    text-decoration: none;
+    background-color: var(--dark-color);
+    border-radius: 20px;
+    position: relative;
+
+    aspect-ratio: 0.73;
+    height: fit-content;
+    width: 285px;
+    box-sizing: border-box;
+    padding: 20px 20px 36px 20px;
+    overflow: clip;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    cursor: pointer;
+
+    transition: background-color .2s ease-in-out;
+
+    img{
+        display: block;
+        object-fit: cover;
+        width: 100%;
+        aspect-ratio: 1;
+        z-index: 1;
+    }
+    h3{
+        width: 90%;
+        margin: 0 auto;
+        text-align: left;
+        height: fit-content;
+        flex: 1;
+        text-overflow: ellipsis;
+        line-height: 130%;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: visible;
+        z-index: 1;
+
+        font-size: 18px;
+    }
+    .back{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at 200px 300px, rgba(248, 77, 0, .7) 0%, rgba(39, 39, 39, .9) 90%);
+        /*background: radial-gradient(*/
+        /*        circle at 0 0,rgba(238, 150, 239, 0.42) 0%, rgba(25, 25, 25, 1) 41%, rgba(248, 77, 0, 0.72) 100%,*/
+        /*        circle at 200px 300px, rgba(248, 77, 0, 0.7) 0%, rgba(39, 39, 39, 0.9) 100%*/
+        /*);*/
+        opacity: 0;
+        z-index: 0;
+        transition: opacity ease-in-out .1s;
+    }
+    span.likesPanel{
+        position: absolute;
+        cursor: default;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        right: 0;
+        bottom: 0;
+        height: 40px;
+        width: fit-content;
+        padding-right: 16px;
+        padding-left: 16px;
+        z-index: 10;
+        min-width: 1em;
+        font-variant-numeric: tabular-nums;
+        clip-path: none;
+        overflow: visible;
+
+
+        background-color: rgba(39, 39, 39, 0.7);
+        border-top-left-radius: 20px;
+
+        font-size: 16px;
+        line-height: 40px;
+        img{
+            cursor: pointer;
+            margin-top: 3px;
+            height: 24px;
+            width: 25px;
+            display: block;
+            z-index: 11;
+            clip-path: none;
+
+        }
+    };
+}
+
+card:hover{
+    .back{
+        opacity: .8;
+    }
+}
+card:active{
+    .back{
+        opacity: 1;
+    }
+}
+
+
+.dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+
+    .dialog-content {
+        background-color: var(--dark-color);
+        position: relative;
+        padding: 30px 15px 40px 15px;
+        border-radius: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        text-align: center;
+    }
+
+    .close-button {
+        position: absolute;
+        color: var(--white-color);
+        top: 20px;
+        right: 20px;
+        background-color: transparent;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+    }
+}
+
+
+@media (max-width: 1200px) {
+    card>h3{
+        font-size: 16px;
+    }
+}

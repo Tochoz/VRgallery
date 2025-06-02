@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="/files/static/css/gallery.css">
+<script src="/files/static/gallery.js" defer></script>
+
+{% block custom_styles %}{% endblock %}
+<section class="gallery">
+    <h1>{% block header %}
+        {% if lang == "en" %} All games {% else %} Все игры {% endif %}
+        {% endblock %}</h1>
+    <div class="filter">
+        <label for="sort">
+            {% if lang == "en" %} Sort by: {% else %} Сортировать по: {% endif %}
+        </label>
+
+        <select name="sort" id="sort">
+            <option value="recent">{% if lang == "en" %} Recent {% else %} Недавние {% endif %}</option>
+            <option value="likes">{% if lang == "en" %} Most liked {% else %} Самые залайканные {% endif %}</option>
+            <option value="viewed">{% if lang == "en" %} Most viewed {% else %} Самые просматриваемые {% endif %}</option>
+            <option value="downloaded">{% if lang == "en" %} Most downloaded {% else %} Самые скачиваемые {% endif %}</option>
+        </select>
+    </div>
+    <div class="grid">
+        {% for game in games %}
+            {% embed "components/card" %}
+            {% endembed %}
+        {% endfor %}
+    </div>
+    {% if page is null %}
+        {% set page=1 %}
+    {% endif %}
+    {% if maxPages is null %}
+        {% set maxPages=1 %}
+    {% endif %}
+    <script defer>
+        var page = {{ page }};
+        var maxPages = {{ maxPages }};
+    </script>
+    <div class="nav">
+        <button class="arrow" onclick='window.location.href="/games?page={{ page-1 }}"' {% if page==1 %}disabled{% endif %}>
+            <img src="/files/static/icons/arrow_left.svg" alt="Предыдущая страница">
+        </button>
+        <span>{{ page | default(1) }} {% if lang=="en" %}in{% else %}из{% endif %} {{ maxPages }}</span>
+        <button class="arrow" onclick='window.location.href="/games?page={{ page+1 }}"' {% if page==maxPages %}disabled{% endif %}><img src="/files/static/icons/arrow_right.svg" alt="Следующая страница"></button>
+    </div>
+</section>

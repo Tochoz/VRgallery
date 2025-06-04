@@ -29,7 +29,7 @@
         <label for="file">Файл .apk:</label>
         <div class="input-file-row">
             <label class="input-file">
-                <input type="file" name="apkFile">
+                <input type="file" id="apkFile" name="apkFile">
                 <span>Выберите файл</span>
             </label>
             <div class="input-file-list"></div>
@@ -49,7 +49,7 @@
         <label for="file">Обложка</label>
         <div class="input-file-row">
             <label class="input-file">
-                <input type="file" name="preview">
+                <input type="file" id="preview" name="preview">
                 <span>Выберите изображение</span>
             </label>
             <div class="input-file-list"></div>
@@ -61,7 +61,7 @@
         <label for="file">Скриншоты (несколько файлов)</label>
         <div class="input-file-row">
             <label class="input-file">
-                <input type="file" name="medias" multiple>
+                <input type="file" id="medias" name="medias" multiple>
                 <span>Выберите изображение</span>
             </label>
             <div class="input-file-list"></div>
@@ -69,6 +69,7 @@
         <label for="mediasLink">или ссылки на файлы через ";"</label>
         <input type="text" id="mediasLink" name="mediasLink">
     </div>
+    <input type="hidden" id="mediasOrder" name="mediasOrder">
     <button type="submit">Создать игру</button>
 </form>
 

@@ -20,8 +20,9 @@ class FileStorageImpl(private val resourceLoader: ResourceLoader) : FileStorage 
     val log = LoggerFactory.getLogger(this::class.java)
     val rootLocation: Path = Paths.get(ResourceUtils.getURL("storage").toURI())
 
-    override fun store(file: MultipartFile, path: String, customName: String?) {
+    override fun store(file: MultipartFile, path: String, customName: String?): String {
         Files.copy(file.inputStream, Paths.get("filestorage/$path/${customName ?: file.originalFilename}"))
+        return "/files/$path/${customName ?: file.originalFilename}"
     }
 
     override fun loadFile(filename: String): Resource {
@@ -30,12 +31,17 @@ class FileStorageImpl(private val resourceLoader: ResourceLoader) : FileStorage 
         if (resource.exists() || resource.isReadable) {
             return resource
         } else {
-            throw RuntimeException("FAIL!")
+            throw RuntimeException("Failed to load resource: $file")
         }
     }
 
     override fun deleteAll() {
         FileSystemUtils.deleteRecursively(rootLocation.toFile())
+    }
+
+    override fun delete(filename: String) {
+        val file = ResourceUtils.getFile("filestorage$filename")
+        FileSystemUtils.deleteRecursively(file)
     }
 
     override fun init() {

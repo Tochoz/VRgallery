@@ -14,15 +14,17 @@ import org.example.vrgallery.persistance.repository.MediaRepository
 import org.hibernate.ObjectNotFoundException
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
-import org.springframework.data.jpa.domain.AbstractPersistable_
+import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Service
 import org.springframework.web.multipart.MultipartFile
+import kotlin.jvm.optionals.getOrNull
 
 
 @Service
 class GameService(
     private val gameRepository: GameRepository,
     private val mediaRepository: MediaRepository,
+    private val fileStorage: FileStorage,
     ) {
     fun getGameById(id: Int, isEng: Boolean = false): GameDetailsDto{
         val game = gameRepository.findById(id)
@@ -45,10 +47,25 @@ class GameService(
         preview: MultipartFile? = null,
         medias: List<MultipartFile>? = null,
     ): Game {
+
         var game = gameCreateDto.toGame()
         game = gameRepository.save(game)
+        apkFile?.let {
+            fileStorage.store(apkFile, "apk", "${game.id}_${apkFile.originalFilename}")
+        }?.also { game.file = it }
 
-        game.medias = gameCreateDto.medias.map { it.toMedia(game).also { mediaRepository.save(it) } }.toMutableList()
+        preview?.let {
+            fileStorage.store(preview, "game_media", "${game.id}_preview_${preview.originalFilename}")
+        }?.also { game.preview = it }
+
+        game.medias = if (medias != null)
+            medias.mapIndexed { index, media ->
+                fileStorage.store(media, "game_media", "${game.id}_${index}_${media.originalFilename}")
+            }.map { it.toMedia(game).also { mediaRepository.save(it) } }.toMutableList()
+        else
+            gameCreateDto.medias.map { it.toMedia(game).also { mediaRepository.save(it) } }.toMutableList()
+        gameRepository.save(game)
+
         return game
     }
 
@@ -72,6 +89,34 @@ class GameService(
             )
         }
         return game.likes
+    }
+
+    @Transactional
+    fun getTopFour(): List<GamePrevDto>{
+        val games: List<Game> = gameRepository.findAll(
+            PageRequest.of(0, 4, Sort.by(Sort.Direction.DESC,"likes"))
+        ).content
+        return games.map { it.toPreview() }
+    }
+
+    @Transactional
+    fun deleteGame(id: Int): Unit {
+        val game: Game? = gameRepository.findById(id).getOrNull()
+        if (game != null) {
+            game.file.takeIf { it.startsWith("/") }?.let {
+                fileStorage.delete(it.removePrefix("/files"))
+            }
+            game.preview.takeIf { it.startsWith("/") }?.let {
+                fileStorage.delete(it.removePrefix("/files"))
+            }
+            game.medias.forEach { media ->
+                media.file.takeIf { it.startsWith("/") }?.let {
+                    fileStorage.delete(it.removePrefix("/files"))
+                }
+                mediaRepository.delete(media)
+            }
+            gameRepository.delete(game)
+        }
     }
 
     @Transactional

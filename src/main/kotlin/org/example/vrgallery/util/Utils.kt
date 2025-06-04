@@ -33,3 +33,11 @@ fun fillPebbleConst(
         true
     )
 }
+
+fun processLikedCookie(cookie: String?): MutableSet<Int> =
+    cookie
+        ?.split("|")
+        ?.filter { it.isNotBlank() }
+        ?.map { it.toInt() }
+        ?.toMutableSet()
+        ?: mutableSetOf()

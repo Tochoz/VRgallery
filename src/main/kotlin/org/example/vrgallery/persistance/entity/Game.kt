@@ -28,7 +28,7 @@ class Game (
     val descriptionEng: String? = null,
 
     @Column
-    val file: String,
+    var file: String,
 
     @Column(name = "is_third_party_link")
     val isThirdParty: Boolean,
@@ -44,7 +44,7 @@ class Game (
     val sideQuestLink: String? = null,
 
     @Column
-    val preview: String = "/files/static/placeholder.png",
+    var preview: String = "/files/static/placeholder.png",
 
     )
 {

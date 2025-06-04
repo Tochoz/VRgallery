@@ -9,13 +9,12 @@ import org.example.vrgallery.persistance.repository.GameRepository
 import org.example.vrgallery.persistance.repository.MediaRepository
 import org.example.vrgallery.service.GameService
 import org.example.vrgallery.util.fillPebbleConst
+import org.example.vrgallery.util.processLikedCookie
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Sort
 import org.springframework.http.HttpHeaders
 import org.springframework.http.ResponseCookie
 import org.springframework.http.ResponseEntity
-import org.springframework.security.authentication.AnonymousAuthenticationToken
-import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.*
@@ -35,15 +34,18 @@ class ViewController(
     }).build()
 
     @GetMapping()
-    fun index(@RequestParam(required = false) lang: String? = null, model: Model, session: HttpSession): String {
+    fun index(
+        @RequestParam(required = false) lang: String? = null, model: Model,
+        @CookieValue(name = "LIKED_ENTITIES", required = false) likedEntitiesString: String?,
+        session: HttpSession,
+    ): String {
+        val likedEntities = processLikedCookie(likedEntitiesString)
         fillPebbleConst("main",lang, model, session)
 
-        model.addAttribute("topGames", listOf(
-            GamePrevDto(2, "Лучшая игра 1", 20),
-            GamePrevDto(4, "Лучшая игра 2", 15),
-            GamePrevDto(5, "Лучшая игра 3", 2),
-            GamePrevDto(6, "Неплохая игра 4", 1),
-        ))
+        val topGames = gameService.getTopFour()
+        model.addAttribute("topGames",
+            topGames.map { it.copy(liked = it.id in likedEntities) }
+        )
 
         return "index"
     }
@@ -75,10 +77,7 @@ class ViewController(
             else -> Sort.by(Sort.Direction.DESC, "addedDate")
         }
 
-        val likedEntities = likedEntitiesString?.split("|")?.filter { it.isNotBlank() }
-            ?.map { it.toInt() }
-            ?.toMutableSet()
-            ?: mutableSetOf()
+        val likedEntities = processLikedCookie(likedEntitiesString)
 
         val (games, pageObj) = gameService.getGamePage(
             PageRequest.of(page-1, 16, sortObj),
@@ -87,6 +86,7 @@ class ViewController(
 
         model.addAttribute("games", games.map { it.copy(liked = it.id in likedEntities) })
         model.addAttribute("maxPages", pageObj.totalPages)
+        sort?.let { model.addAttribute("sort", it) }
         model.addAttribute("page", page)
         return "library"
     }
@@ -113,10 +113,8 @@ class ViewController(
         @CookieValue(name = "LIKED_ENTITIES", required = false) likedEntitiesString: String?,
         session: HttpSession,
     ): ResponseEntity<LikeResponse> {
-        val likedEntities = likedEntitiesString?.split("|")?.filter { it.isNotBlank() }
-            ?.map { it.toInt() }
-            ?.toMutableSet()
-            ?: mutableSetOf()
+        val likedEntities = processLikedCookie(likedEntitiesString)
+
         val likesNow: Int = if (!likedEntities.contains(id)) {
             likedEntities.add(id)
             gameService.likeGame(id)
@@ -140,10 +138,8 @@ class ViewController(
         @CookieValue(name = "LIKED_ENTITIES", required = false) likedEntitiesString: String?,
         session: HttpSession,
     ): ResponseEntity<LikeResponse> {
-        val likedEntities = likedEntitiesString?.split("|")?.filter { it.isNotBlank() }
-            ?.map { it.toInt() }
-            ?.toMutableSet()
-            ?: mutableSetOf()
+        val likedEntities = processLikedCookie(likedEntitiesString)
+
         val likesNow: Int = if (likedEntities.contains(id)) {
             likedEntities.remove(id)
             gameService.dislikeGame(id)

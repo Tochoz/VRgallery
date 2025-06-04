@@ -3,5 +3,26 @@
 <section class="title-game">
     <img src="{{ game.preview }}"/>
     <h1>{% block pageheader %} {{ game.title }} {% endblock %}</h1>
-    {% if isAdmin == true %}<a href="/manage/games/{{ game.id }}">Edit</a>{% endif %}
+    {% if isAdmin == true %}<a href="/manage/games/{{ game.id }}">Изменить</a>{% endif %}
+    {% if isAdmin == true %}<button class="adminButton" onclick="deleteGame('{{ game.id }}')">Удалить</button>
+
+        <script>
+            function deleteGame(gameId) {
+                fetch('/manage/games/' + gameId, {
+                    method: 'DELETE',
+                })
+                        .then(response => {
+                            if (response.ok) {
+                                console.log('Item deleted successfully');
+                                window.location = '/games';
+                            } else {
+                                console.error('Error deleting item');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+            }
+        </script>
+    {% endif %}
 </section>

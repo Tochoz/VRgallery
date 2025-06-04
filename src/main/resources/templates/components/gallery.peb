@@ -11,12 +11,23 @@
             {% if lang == "en" %} Sort by: {% else %} Сортировать по: {% endif %}
         </label>
 
-        <select name="sort" id="sort">
+        <select name="sort" id="sort" onchange="window.location.href=`/games?sort=${this.value}`">
             <option value="recent">{% if lang == "en" %} Recent {% else %} Недавние {% endif %}</option>
-            <option value="likes">{% if lang == "en" %} Most liked {% else %} Самые залайканные {% endif %}</option>
-            <option value="viewed">{% if lang == "en" %} Most viewed {% else %} Самые просматриваемые {% endif %}</option>
-            <option value="downloaded">{% if lang == "en" %} Most downloaded {% else %} Самые скачиваемые {% endif %}</option>
+            <option value="liked">{% if lang == "en" %} Most liked {% else %} Самые залайканные {% endif %}</option>
+{#            <option value="viewed">{% if lang == "en" %} Most viewed {% else %} Самые просматриваемые {% endif %}</option>#}
+{#            <option value="downloaded">{% if lang == "en" %} Most downloaded {% else %} Самые скачиваемые {% endif %}</option>#}
         </select>
+        <script defer>
+            var targetSort = "{{ sort | default("recent") }}";
+
+            var selectElement = document.getElementById("sort");
+            for (var i = 0; i < selectElement.options.length; i++) {
+                if (selectElement.options[i].value === targetSort) {
+                    selectElement.selectedIndex = i;
+                    break;
+                }
+            }
+        </script>
     </div>
     <div class="grid">
         {% for game in games %}
@@ -35,10 +46,10 @@
         var maxPages = {{ maxPages }};
     </script>
     <div class="nav">
-        <button class="arrow" onclick='window.location.href="/games?page={{ page-1 }}"' {% if page==1 %}disabled{% endif %}>
+        <button class="arrow" onclick='window.location.href="/games?page={{ page-1 }}&sort={{ sort | default("recent") }}"' {% if page==1 %}disabled{% endif %}>
             <img src="/files/static/icons/arrow_left.svg" alt="Предыдущая страница">
         </button>
         <span>{{ page | default(1) }} {% if lang=="en" %}in{% else %}из{% endif %} {{ maxPages }}</span>
-        <button class="arrow" onclick='window.location.href="/games?page={{ page+1 }}"' {% if page==maxPages %}disabled{% endif %}><img src="/files/static/icons/arrow_right.svg" alt="Следующая страница"></button>
+        <button class="arrow" onclick='window.location.href="/games?page={{ page+1 }}&sort={{ sort | default("recent") }}"' {% if page==maxPages %}disabled{% endif %}><img src="/files/static/icons/arrow_right.svg" alt="Следующая страница"></button>
     </div>
 </section>

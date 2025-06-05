@@ -92,11 +92,11 @@ class GameService(
     }
 
     @Transactional
-    fun getTop(): List<GamePrevDto>{
+    fun getTop(isEng: Boolean = false): List<GamePrevDto>{
         val games: List<Game> = gameRepository.findAll(
             PageRequest.of(0, 8, Sort.by(Sort.Direction.DESC,"likes"))
         ).content
-        return games.map { it.toPreview() }
+        return games.map { it.toPreview(isEng) }
     }
 
     @Transactional
@@ -106,11 +106,11 @@ class GameService(
             game.file.takeIf { it.startsWith("/") }?.let {
                 fileStorage.delete(it.removePrefix("/files"))
             }
-            game.preview.takeIf { it.startsWith("/") }?.let {
+            game.preview.takeIf { it.startsWith("/") && it != "/files/static/placeholder.png" }?.let {
                 fileStorage.delete(it.removePrefix("/files"))
             }
             game.medias.forEach { media ->
-                media.file.takeIf { it.startsWith("/") }?.let {
+                media.file.takeIf { it.startsWith("/") && it != "/files/static/placeholder.png"  }?.let {
                     fileStorage.delete(it.removePrefix("/files"))
                 }
                 mediaRepository.delete(media)

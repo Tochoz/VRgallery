@@ -3,10 +3,7 @@ package org.example.vrgallery.controller
 import io.pebbletemplates.pebble.PebbleEngine
 import io.pebbletemplates.pebble.loader.ClasspathLoader
 import jakarta.servlet.http.HttpSession
-import org.example.vrgallery.dto.GamePrevDto
 import org.example.vrgallery.dto.LikeResponse
-import org.example.vrgallery.persistance.repository.GameRepository
-import org.example.vrgallery.persistance.repository.MediaRepository
 import org.example.vrgallery.service.GameService
 import org.example.vrgallery.util.fillPebbleConst
 import org.example.vrgallery.util.processLikedCookie
@@ -24,8 +21,6 @@ import java.time.Duration
 @Controller
 @RequestMapping("/")
 class ViewController(
-    private val gameRepository: GameRepository,
-    private val mediaRepository: MediaRepository,
     private val gameService: GameService
 ) {
     private val pebbleEngine = PebbleEngine.Builder().loader(ClasspathLoader().apply {
@@ -41,8 +36,9 @@ class ViewController(
     ): String {
         val likedEntities = processLikedCookie(likedEntitiesString)
         fillPebbleConst("main",lang, model, session)
+        val isEngLocale = session.getAttribute("lang") == "en"
 
-        val topGames = gameService.getTop()
+        val topGames = gameService.getTop(isEngLocale)
         model.addAttribute("topGames",
             topGames.map { it.copy(liked = it.id in likedEntities) }
         )

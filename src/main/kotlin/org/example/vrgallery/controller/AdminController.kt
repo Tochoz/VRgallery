@@ -1,7 +1,6 @@
 package org.example.vrgallery.controller
 
 import org.example.vrgallery.dto.GameCreateDto
-import org.example.vrgallery.service.FileStorage
 import org.example.vrgallery.service.GameService
 import org.example.vrgallery.util.map
 import org.springframework.http.ResponseEntity
@@ -17,7 +16,6 @@ import java.time.Year
 @Controller
 @RequestMapping("/manage")
 class AdminController(
-    private val fileStorage: FileStorage,
     private val gameService: GameService,
 ) {
     @GetMapping("/")

@@ -7,15 +7,10 @@ function showDialog() {
     const content = document.createElement('div');
     content.classList.add('dialog-content');
 
-    const paragraph = document.createElement('p');
-    paragraph.textContent = 'This is a dialog window.';
-
-    const link = document.createElement('a');
-    link.href = '#';
-    link.textContent = 'Click me';
-
-    content.appendChild(paragraph);
-    content.appendChild(link);
+    content.innerHTML = `
+    <p>Для того, чтобы поиграть в игру на своём шлеме Oculus Quest, скачайте <a href="https://sidequestvr.com/download" target="_blank">десктопное приложение SideQuest</a> на свой компьютер.</p>
+    <p>Подключите гарнитуру к компьютеру и установите скачанный .apk файл игры выбрав соответствующий раздел в программе.<br>Готово! Вы можете запустить игру на вашем шлеме!</p>
+    `
 
     // Создаем кнопку закрытия
     const closeButton = document.createElement('button');

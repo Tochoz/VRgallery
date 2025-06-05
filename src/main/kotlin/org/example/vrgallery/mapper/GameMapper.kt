@@ -7,6 +7,10 @@ import org.example.vrgallery.persistance.entity.Game
 import org.example.vrgallery.persistance.entity.Media
 import org.example.vrgallery.persistance.entity.MediaType
 import org.example.vrgallery.util.map
+import org.hibernate.type.descriptor.DateTimeUtils
+import java.sql.Time
+import java.time.Instant
+import java.time.Year
 
 fun Game.toPreview(isEngLocale: Boolean = false) = GamePrevDto(
     id = id,
@@ -24,6 +28,7 @@ fun Game.toDetails(isEngLocale: Boolean = false) = GameDetailsDto(
     file = file,
     sideQuestLink = sideQuestLink,
     medias = medias,
+    year = year
 )
 
 fun GameCreateDto.toGame(
@@ -41,6 +46,7 @@ fun GameCreateDto.toGame(
     isThirdParty = false,
     sideQuestLink = sideQuestLink,
     preview = preview ?: uploadedPreview ?: "/files/static/placeholder.png",
+    year = year ?: Year.now().value
 )
 
 fun String.toMedia(game: Game) = Media(

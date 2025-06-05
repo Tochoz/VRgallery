@@ -2,10 +2,8 @@ section.text{
     margin-bottom: 80px;
     width: 83%;
 }
-
-section.text>p{
-
-}
 @media (max-width: 500px){
-    margin-bottom: 2em;
+    section.text {
+            width: 95%;
+    }
 }

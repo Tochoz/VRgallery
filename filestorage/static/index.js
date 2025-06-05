@@ -36,6 +36,37 @@ function like(gameId, event) {
         });
 
 }
+function likeDetailed(gameId) {
+    const panel = document.querySelector(`span.likesPanel`);
+    let endPoint
+    if (panel.hasAttribute("liked"))
+        endPoint = `/games/${gameId}/dislike`
+    else
+        endPoint = `/games/${gameId}/like`
+    fetch(endPoint, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            // Update the number of likes on the page
+            panel.querySelector(".likesCount").innerHTML = data.likes;
+
+            if (data.liked) {
+                panel.setAttribute("liked", "")
+                panel.querySelector(".likesPanel img").src = "/files/static/icons/like_filled.svg"
+            }
+            else {
+                panel.removeAttribute("liked")
+                panel.querySelector(".likesPanel img").src = "/files/static/icons/like.svg"
+            }
+        })
+        .catch(error => {
+            console.error('Error liking game:', error);
+        });
+}
 function noneClick(event) {
     event.stopPropagation(); // Prevent the event from reaching the parent
 }

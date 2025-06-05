@@ -11,6 +11,7 @@ import org.springframework.ui.ModelMap
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
 import org.springframework.web.servlet.view.RedirectView
+import java.time.Year
 
 
 @Controller
@@ -33,6 +34,7 @@ class AdminController(
             "isAdmin",
             true
         )
+        model.addAttribute("year", Year.now().value)
         return "admin/create"
     }
 
@@ -42,6 +44,7 @@ class AdminController(
         @RequestParam("titleEng") titleEng: String,
         @RequestParam("description") description: String,
         @RequestParam("descriptionEng") descriptionEng: String,
+        @RequestParam("year") year: Int,
         @RequestParam("fileLink", required = false) fileLink: String?,
         @RequestParam("sideQuestLink", required = false) sideQuestLink: String?,
         @RequestParam("previewLink", required = false) previewLink: String?,
@@ -64,6 +67,7 @@ class AdminController(
                 sideQuestLink = sideQuestLink,
                 preview = previewLink?.isNotBlank()?.map(previewLink, null),
                 medias = mediasLink?.split(';') ?: emptyList(),
+                year = year
             ),
             apkFile = apkFile,
             preview = preview,

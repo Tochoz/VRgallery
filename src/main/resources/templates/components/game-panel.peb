@@ -6,7 +6,7 @@
         {% if lang == "en" %} Download .apk file {% else %} Скачать .apk файл {% endif %}
     </a>
 
-    {% if game.sideQuestLink != null %}
+    {% if game.sideQuestLink != null and game.sideQuestLink != "" %}
         <a class="download sideQuest" href="{{ game.sideQuestLink }}" target="_blank">
             {% if lang == "en" %} SideQuest page {% else %} Страница SideQuest {% endif %}
         </a>

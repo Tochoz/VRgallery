@@ -1,9 +1,18 @@
 <link rel="stylesheet" href="/files/static/css/title-game.css">
 {% block custom_styles %}{% endblock %}
 <section class="title-game">
-    <img src="{{ game.preview }}"/>
+    <img class="preview" src="{{ game.preview }}"/>
+    <section>
     <h1>{% block pageheader %} {{ game.title }} {% endblock %}</h1>
-    {% if isAdmin == true %}<a href="/manage/games/{{ game.id }}">Изменить</a>{% endif %}
+
+    <span class="year">{{ game.year }}</span>
+    <span class="likesPanel" onclick="likeDetailed({{ game.id }})">
+        <img src="/files/static/icons/like{% if game.liked %}_filled{% endif %}.svg" alt="like">
+        <div class="likesCount">{{ game.likes }}</div>
+    </span>
+
+    </section>
+{#    {% if isAdmin == true %}<a href="/manage/games/{{ game.id }}">Изменить</a>{% endif %}#}
     {% if isAdmin == true %}<button class="adminButton" onclick="deleteGame('{{ game.id }}')">Удалить</button>
 
         <script>

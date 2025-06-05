@@ -2,6 +2,7 @@ section.game-panel{
     width: 100%;
     margin-bottom: 80px;
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
 
     a.download{
@@ -10,7 +11,7 @@ section.game-panel{
         align-items: center;
         box-sizing: border-box;
         height: 40px;
-        padding: 8px 4% 10px 4%;
+        padding: 8px 1.5em 10px 1.5em;
 
         text-decoration: none;
         font-weight: inherit;

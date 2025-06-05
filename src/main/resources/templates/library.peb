@@ -1,6 +1,6 @@
 {% extends "components/base" %}
 {% block title %}
-    Все игры
+    VR Игры
 {% endblock %}
 {% block content %}
     {% embed "components/gallery" %}

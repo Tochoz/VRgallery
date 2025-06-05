@@ -1,12 +1,11 @@
 section.title-game{
     display: flex;
-    height: fit-content;
+    height: auto;
     gap: 40px;
-    align-items: end;
 
     margin-top: 80px;
     margin-bottom: 40px;
-    img{
+    img.preview{
         display: block;
         aspect-ratio: 1;
         width: 160px;
@@ -14,12 +13,66 @@ section.title-game{
 
         border-radius: 20px;
     }
-    h1{
-        margin-bottom: 0;
-        display: block;
-        width: 80%;
+    span.year{
+        font-size: 120%;
+        opacity: .5;
+    }
+    section{
+        box-sizing: border-box;
+        height: 160px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        h1{
+            display: block;
+            width: 100%;
+            margin:0;
+        }
+
+        span.likesPanel{
+            display: flex;
+            flex-direction: row;
+            gap: 8px;
+            height: 40px;
+            width: fit-content;
+            font-variant-numeric: tabular-nums;
+            overflow: visible;
+            font-size: inherit;
+            align-items: center;
+            margin-top: .8em;
+            background-color: var(--dark-color);
+            padding: 0 .9em 0 .7em;
+            border-radius: 20px;
+            cursor: pointer;
+            min-width: 3.2em;
+            user-select: none;
+
+            line-height: 40px;
+            img{
+                margin-top: 3px;
+                width: 24px;
+                display: block;
+            }
+        };
+        span.likesPanel:hover{
+            filter: brightness(1.2);
+        }
+    }
+
+}
+@media (max-width: 600px){
+    section.title-game{
+        section>span.likesPanel{
+            margin-top: 2em;
+        }
     }
 }
-@media (max-width: 500px){
-    margin-bottom: 2em;
+@media (max-width: 425px){
+    section.title-game{
+        gap: 20px   ;
+        flex-direction: column;
+        section{
+            height: fit-content;
+        }
+    }
 }

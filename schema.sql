@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS Games(
     file varchar(255) NULL,
     is_third_party_link BOOLEAN not null DEFAULT(false),
     added_date TIMESTAMP NOT NULL DEFAULT(now()),
+    year INT NOT NULL DEFAULT(date_part('year', CURRENT_DATE)),
     likes INT NOT NULL default(0),
     side_quest_link varchar(255) NULL,
     preview varchar(255) NULL,

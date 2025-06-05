@@ -42,7 +42,7 @@ class ViewController(
         val likedEntities = processLikedCookie(likedEntitiesString)
         fillPebbleConst("main",lang, model, session)
 
-        val topGames = gameService.getTopFour()
+        val topGames = gameService.getTop()
         model.addAttribute("topGames",
             topGames.map { it.copy(liked = it.id in likedEntities) }
         )
@@ -95,15 +95,17 @@ class ViewController(
     fun gameInfo(
         @RequestParam(required = false) lang: String? = null,
         @PathVariable(required = true) id: Int,
+        @CookieValue(name = "LIKED_ENTITIES", required = false) likedEntitiesString: String?,
         model: Model,
         session: HttpSession
     ): String {
         fillPebbleConst("game",lang, model, session)
-
+        val likedEntities = processLikedCookie(likedEntitiesString)
         val isEngLocale = session.getAttribute("lang") == "en"
+
         val game = gameService.getGameById(id, isEngLocale)
 
-        model.addAttribute("game", game)
+        model.addAttribute("game", game.copy(liked = game.id in likedEntities))
         return "game"
     }
 

@@ -37,11 +37,12 @@ class Game (
     val addedDate: Instant = Instant.now(),
 
     @Column
-
     var likes: Int = 0,
 
     @Column(name = "side_quest_link")
     val sideQuestLink: String? = null,
+
+    val year: Int,
 
     @Column
     var preview: String = "/files/static/placeholder.png",

@@ -7,6 +7,8 @@ data class GameDetailsDto(
     val title: String,
     val description: String,
     val likes: Int = 0,
+    val liked: Boolean = false,
+    val year: Int,
     val file: String,
     val sideQuestLink: String?,
     val preview: String = "/files/static/placeholder.png",

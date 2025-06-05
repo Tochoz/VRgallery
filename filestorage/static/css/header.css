@@ -19,9 +19,17 @@ header{
         /*align-items: center;*/
         
     }
+    .logo-wrapper-mobile{
+        display: none;
+    }
     nav{
         display: flex;
+        flex: 1;
         margin: 0 auto 0 40px;
+        align-items: center;
+    }
+    .nav-links{
+        display: flex;
         height: 32px;
         justify-content: left;
         gap: 24px;
@@ -94,4 +102,87 @@ header {
         }
     }
 
+}
+.burger-menu{
+    display: none;
+}
+
+@media (max-width: 730px) {
+    header{
+        .logo-wrapper{
+            display: none;
+            position: absolute;
+        }
+        .logo-wrapper-mobile{
+            display: unset;
+        }
+        nav{
+            margin: 0;
+            flex: 0;
+        }
+        .nav-links {
+            display: none;
+        }
+
+        .burger-menu {
+            display: block;
+            position: relative;
+        }
+
+        .burger-icon {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+            padding-right: 50px;
+        }
+
+        .burger-icon span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: var(--white-color);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .burger-links {
+            display: none;
+            position: absolute;
+            top: 40px;
+            left: -10vw;
+            background-color: var(--dark-color);
+            z-index: 1;
+            width: 100vw;
+            box-sizing: border-box;
+            padding: 1em 10vw 2em 10vw;
+            a{
+                margin-bottom: .5em;
+            }
+        }
+
+        .burger-menu[open] .burger-icon span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .burger-menu[open] .burger-icon span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .burger-menu[open] .burger-icon span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        .burger-menu[open] .burger-links {
+            display: block;
+        }
+    }
+}
+@media (max-width: 400px) {
+    header {
+        .burger-icon {
+            padding-right: 0;
+        }
+    }
 }

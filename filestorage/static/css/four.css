@@ -2,13 +2,12 @@ section.four{
     width: 100%;
     margin-bottom: 80px;
 
-    h2{
-        width: 75%;
-    }
     .list{
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-start;
         height: fit-content;
+        flex-wrap: wrap;
+        align-items: start;
 
         gap: 20px;
     }

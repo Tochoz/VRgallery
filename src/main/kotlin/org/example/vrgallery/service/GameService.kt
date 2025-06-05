@@ -92,9 +92,9 @@ class GameService(
     }
 
     @Transactional
-    fun getTopFour(): List<GamePrevDto>{
+    fun getTop(): List<GamePrevDto>{
         val games: List<Game> = gameRepository.findAll(
-            PageRequest.of(0, 4, Sort.by(Sort.Direction.DESC,"likes"))
+            PageRequest.of(0, 8, Sort.by(Sort.Direction.DESC,"likes"))
         ).content
         return games.map { it.toPreview() }
     }

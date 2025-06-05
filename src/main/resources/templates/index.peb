@@ -2,14 +2,31 @@
 
 {% block content %}
     {% embed "components/title-desc" %}
-    {% block pageheader %} Библиотека VR проектов <br>образовательного центра графических технологий ИТМО{% endblock %}
-    {% block text %} Данный сайт представляет из себя онлайн библиотеку VR игр и приложений, разработанных сотрудниками и студентами образовательного центра графических технологий ИТМО, на данном сайте вы можете ознакомиться со смиском опубликованных игр и опробовать их, скачав установочный файл и запустив на собственной гарнитуре вирутальной реальности{% endblock %}
+    {% block pageheader %}
+        {% if lang == "en" %}
+    Library of VR projects of the <br>educational center of graphic technologies of the ITMO University
+        {% else %}
+    Библиотека VR проектов <br>образовательного центра графических технологий ИТМО
+        {% endif %}
+    {% endblock %}
+    {% block text %}
+        {% if lang == "en" %}
+        This site is an online library of VR projects developed by employees and students of the educational center of graphic technologies ITMO, you can try out our games by downloading the installation file and running on your own headset virutal reality
+        {% else %}
+    Данный сайт является онлайн библиотекой VR проектов, разработанных сотрудниками и студентами образовательного центра графических технологий ИТМО, вы можете опробовать наши игры скачав установочный файл и запустив на собственной гарнитуре вирутальной реальности.
+        {% endif %}
+    {% endblock %}
     {% endembed %}
     {% embed "components/four" %}
     {% endembed %}
     {% embed "components/text" %}
-    {% block text %}<p>Наш образовательный центр занимается разработкой VR приложений на современных игровых движках Unreal Engine и Unitу. Среди проектов присутствуют как студенческие работы в рамках дисциплин, так и проекты образовательного центра выполненные на заказ для сторонних обрадовательных и культурных организаций.</p><p>Игры разработанны на гарнитуры виртуальной реальности Oculus Quest 2/3/3s и Pico 4. Часть наших проектов опубликована напрямую на платфарму SideQuest, на страницах данных проектов расположена ссылка на эту платформу.</p>{% endblock %}
-
+    {% block text %}
+        {% if lang == "en" %}
+            <p>Our educational center develops VR applications on modern game engines such as Unreal Engine and Unity. Among the projects there are students' works as part of disciplines, as well as projects of the educational center made to order for third-party educational and cultural organizations.</p><p>Games are developed for virtual reality headsets Oculus Quest 2/3/3s and Pico 4. Some of our projects are published directly on SideQuest platform, on the pages of these projects there is a link to this platform.</p>
+        {% else %}
+        <p>Наш образовательный центр занимается разработкой VR приложений на современных игровых движках Unreal Engine и Unitу. Среди проектов присутствуют как студенческие работы в рамках дисциплин, так и проекты образовательного центра выполненные на заказ для сторонних обрадовательных и культурных организаций.</p><p>Игры разработанны на гарнитуры виртуальной реальности Oculus Quest 2/3/3s и Pico 4. Часть наших проектов опубликована напрямую на платфарму SideQuest, на страницах данных проектов расположена ссылка на эту платформу.</p>
+        {% endif %}
+    {% endblock %}
     {% endembed %}
     {% embed "components/contacts" %}
     {% endembed %}

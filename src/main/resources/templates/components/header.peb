@@ -10,7 +10,7 @@
             {% if lang == "en" %} Main page {% else %} Главная {% endif %}
         </a>
         <a href="/games{% if lang == "en" %}?lang=en{% endif %}" {% if location == "library" %} class="disabled" {% endif %}>
-            {% if lang == "en" %} All games {% else %} Все игры {% endif %}
+            {% if lang == "en" %} All games {% else %}VR игры {% endif %}
         </a>
         <a href="/{% if lang == "en" %}?lang=en{% endif %}#contacts" {% if location == "contacts" %} class="disabled" {% endif %}>
             {% if lang == "en" %} Contacts {% else %} Контакты {% endif %}

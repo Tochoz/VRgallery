@@ -4,7 +4,7 @@
 {% block custom_styles %}{% endblock %}
 <section class="gallery">
     <h1>{% block header %}
-        {% if lang == "en" %} VR Projects {% else %} VR проекты {% endif %}
+        {% if lang == "en" %} VR games {% else %} VR игры {% endif %}
         {% endblock %}</h1>
     <div class="filter">
         <label for="sort">

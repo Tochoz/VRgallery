@@ -1,0 +1,32 @@
+spring:
+  application.name: "VRgallery"
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: "800MB"
+      max-request-size: "800MB"
+      resolve-lazily: true
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://127.0.0.1:5432/public}
+    username: ${DB_USERNAME:user}
+    password: ${DB_PASSWORD:password}
+
+  thymeleaf:
+    enabled: false
+  freemarker:
+    enabled: false
+  groovy:
+    template:
+      enabled: false
+
+debug: false
+server:
+  port: 8080
+#  error:
+#    path: "/error"
+
+#pebble.prefix=/templates/
+#logging:
+#  level:
+#    io.pebbletemplates: DEBUG
